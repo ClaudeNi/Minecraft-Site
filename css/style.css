@@ -1,3 +1,4 @@
+/* Reset */
 * {
     padding: 0;
     margin: 0;
@@ -9,6 +10,11 @@ body {
     width: 100%;
 }
 
+.display-none {
+    display: none !important;
+}
+
+/* font import */
 @font-face {
     font-family: "Minecraft";
     font-style: normal;
@@ -18,6 +24,7 @@ body {
         url("/fonts/Minecraft.ttf") format("tff");
 }
 
+/* Landing Page styling */
 #landing-page {
     background: url(../imgs/dirt-block.png);
     display: flex;
@@ -26,6 +33,50 @@ body {
     align-items: center;
     height: 100%;
 }
+
+/* Removed for now to add later */
+/* .panorama {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.panorama-img {
+    height: 100%;
+    width: 100%;
+}
+
+.pano-img1 {
+    position: inherit;
+    z-index: -1;
+    left: 0;
+    animation: panoMove1 20s linear infinite;
+}
+
+.pano-img2 {
+    position: inherit;
+    z-index: -1;
+    left: -100vw;
+    animation: panoMove2 20s linear infinite;
+}
+
+.pano-img3 {
+    position: inherit;
+    z-index: -1;
+    left: -100vw;
+    animation: panoMove3 20s linear infinite;
+    animation-delay: 10s;
+}
+
+.pano-img4 {
+    position: inherit;
+    z-index: -1;
+    left: -100vw;
+    animation: panoMove4 20s linear infinite;
+    animation-delay: 20s;
+} */
 
 .logo {
     height: 20%;
@@ -38,15 +89,17 @@ body {
     cursor: pointer;
 }
 
+/* Game Styling */
 #game {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .play-screen {
-    height: 100vh;
-    width: 100vmin;
+    height: 90vh;
+    width: 90vmin;
     background-color: skyblue;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
@@ -77,6 +130,22 @@ body {
     background: url(../imgs/leaves-block.png) center center / cover no-repeat;
 }
 
-.display-none {
-    display: none !important;
+/* Inventory Styling */
+.inventory {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.inventory .slot {
+    height: 10vh;
+    width: 10vmin;
+    background: url("../imgs/inventory-slot.png") center center / cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inventory .slot img {
+    height: 80%;
+    width: 80%;
 }

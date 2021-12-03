@@ -9,7 +9,16 @@ const blocksObj = {
     4: "leaves",
     5: "cloud",
     6: "none",
+    7: "cobblestone",
 };
+
+const mineable = {
+    canMine: ["dirt", "grass", "stone", "cobblestone", "log", "leaves"],
+    cantMine: [
+      "none",
+      "cloud",
+    ],
+  };
 
 const blocksMatrix = [];
 
@@ -53,6 +62,7 @@ export function draw() {
         for (let j = 0; j < blocksMatrix[i].length; j++) {
             const block = document.createElement("div");
             block.classList.add(blocksObj[blocksMatrix[i][j]]);
+            block.addEventListener("click", isMineable, false);
             block.setAttribute("x", j);
             block.setAttribute("y", i);
             playScreen.appendChild(block);
@@ -62,6 +72,27 @@ export function draw() {
     }
 }
 
+function isMineable(e) {
+    if (
+        mineable.canMine.includes(e.target.classList.value) &&
+        isAccessible(e.target)
+      ) {}
+}
+
+function isAccessible(tile) {
+    const x = parseInt(tile.getAttribute("x"));
+    const y = parseInt(tile.getAttribute("y"));
+    if (
+      blocksMatrix[y][x + 1] === 6 ||
+      blocksMatrix[y][x - 1] === 6 ||
+      blocksMatrix[y - 1][x] === 6 ||
+      blocksMatrix[y + 1][x] === 6
+    ) {
+      blocksMatrix[y][x] = 6;
+      tile.classList.remove(tile.classList);
+      tile.classList.add(blocksObj[6]);
+    }
+  }
 
 
 
@@ -69,9 +100,7 @@ export function draw() {
 
 
 
-
-
-
+// placeholder
 
 // const blocksMatrix = [
 //     [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,],
@@ -108,26 +137,3 @@ export function draw() {
 //         }
 //     }
 // }
-
-// const blocksMatrix = [
-//     ["none","none","cloud","cloud","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["none","cloud","cloud", "none","none","none","none","none","none","none","none","none","none","none","cloud","cloud","none","none","none","none",],
-//     ["none","none","none", "none","none","none","none","none","none","none","none","none","none","cloud","cloud","cloud","cloud","none","none","none",],
-//     ["none","none","none", "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["none","none","leaves", "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["none","leaves","leaves", "leaves","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["none","leaves","leaves", "leaves","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["none","none","log", "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["none","none","log", "none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none",],
-//     ["grass","grass","dirt", "grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass",],
-//     ["dirt","dirt","dirt", "dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt",],
-//     ["dirt","dirt","dirt", "dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt",],
-//     ["dirt","dirt","dirt", "dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt","dirt",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-//     ["stone","stone","stone", "stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone","stone",],
-// ];

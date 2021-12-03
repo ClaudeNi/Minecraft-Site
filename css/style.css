@@ -99,10 +99,9 @@ body {
 
 .play-screen {
     height: 90vh;
-    width: 90vmin;
     background-color: skyblue;
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(30, 1fr);
     grid-template-rows: repeat(20, 1fr);
 }
 
@@ -146,6 +145,33 @@ body {
 }
 
 .inventory .slot img {
-    height: 80%;
-    width: 80%;
+    height: 70%;
+    width: 70%;
+}
+
+.inventory .slot.selected {
+    background: url("../imgs/inventory-select.png") center center / cover no-repeat;
+    height: 10vh;
+    width: 10vmin;
+}
+
+.inventory .slot1::before {
+    content: "";
+    background: url("../imgs/pickaxe.png") center center / cover no-repeat;
+    height: 70%;
+    width: 70%;
+}
+
+.inventory .slot2::before {
+    content: "";
+    background: url("../imgs/axe.png") center center / cover no-repeat;
+    height: 70%;
+    width: 70%;
+}
+
+.inventory .slot3::before {
+    content: "";
+    background: url("../imgs/shovel.png") center center / cover no-repeat;
+    height: 70%;
+    width: 70%;
 }

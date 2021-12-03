@@ -1,19 +1,65 @@
+const inventory = document.querySelectorAll(".slot");
+const inventoryArr = [...inventory];
 
-
-const inventory = {
-    "pickaxe": false,
-    "axe": false,
-    "shovel": false,
-    "dirt": 0,
-    "cobblestone": 0,
-    "oak log": 0,
-    "oak leaves": 0,
+const tools = {
+    pickaxe: {
+        selected: false,
+        mine: ["stone", "cobblestone",],
+    },
+    axe: {
+        selected: false,
+        mine: ["dirt",],
+    },
+    shovel: {
+        selected: false,
+        mine: ["grass", "dirt",],
+    },
 };
 
-export function add(block) {
-    inventory[block] += 1;
+const items = {
+    dirt: {
+        selected: false,
+        count: 0,
+    },
+    cobblestone: {
+        selected: false,
+        count: 0,
+    },
+    log: {
+        selected: false,
+        count: 0,
+    },
+    leaves: {
+        selected: false,
+        count: 0,
+    },
+
+
 }
 
-export function remove(block) {
-    inventory[block] -= 1;
+inventoryArr.forEach((slot, i) => {
+    slot.addEventListener("click", () => {
+        select(i);
+    });
+});
+
+function select(i) {
+    inventory[i].classList.toggle("selected");
+    unselect(i);
+}
+
+function unselect(i) {
+    inventoryArr.forEach((el, j) => {
+        if (i != j) {
+            inventory[j].classList.remove("selected");
+        }
+    })
+}
+
+export function add(block) {
+    items[block] += 1;
+}
+
+export function decrease(block) {
+    items[block] -= 1;
 }

@@ -1,4 +1,5 @@
 import { draw } from "./playScreen.js";
+import {} from "./inventory.js";
 
 const landingPage = document.getElementById("landing-page");
 const startBtn = document.querySelector(".start-btn");

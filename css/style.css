@@ -36,6 +36,12 @@ body {
     height: 100%;
 }
 
+.explain {
+    padding: 1rem;
+    background: #fff;
+    color: #000;
+}
+
 /* Removed for now to add later */
 /* .panorama {
     position: absolute;
@@ -106,6 +112,10 @@ body {
     display: grid;
     grid-template-columns: repeat(30, 1fr);
     grid-template-rows: repeat(20, 1fr);
+}
+
+.play-screen div:hover {
+    opacity: 0.5;
 }
 
 .cloud {

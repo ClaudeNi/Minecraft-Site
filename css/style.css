@@ -142,6 +142,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1rem;
+    color: #fff;
+    font-family: "Minecraft";
 }
 
 .inventory .slot img {
@@ -174,4 +177,35 @@ body {
     background: url("../imgs/shovel.png") center center / cover no-repeat;
     height: 70%;
     width: 70%;
+}
+
+.inventory .slot5::before {
+    content: "";
+    background: url("../imgs/dirt-inventory.png") center center / cover no-repeat;
+    position: relative;
+    height: 60%;
+    width: 60%;
+}
+
+.inventory .slot6::before {
+    content: "";
+    background: url("../imgs/cobblestone-inventory.png") center center / cover no-repeat;
+    position: relative;
+    height: 60%;
+    width: 60%;
+}
+
+.inventory .slot7::before {
+    content: "";
+    background: url("../imgs/log-inventory.png") center center / cover no-repeat;
+    position: relative;
+    height: 60%;
+    width: 60%;
+}
+.inventory .slot8::before {
+    content: "";
+    background: url("../imgs/leaves-inventory.png") center center / cover no-repeat;
+    position: relative;
+    height: 60%;
+    width: 60%;
 }

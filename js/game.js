@@ -126,6 +126,7 @@ function useSlot(e) {
             case "pickaxe":
             case "axe":
             case "shovel":
+            case "shears":
                 isMineable(e);
                 break;
             default:
@@ -193,8 +194,9 @@ let selectedItem = "none";
 
 const tools = {
     pickaxe: ["stone", "cobblestone",],
-    axe: ["log", "leaves",],
+    axe: ["log",],
     shovel: ["grass", "dirt",],
+    shears: ["leaves",],
 };
 
 const items = {

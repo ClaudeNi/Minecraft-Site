@@ -3,11 +3,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Minecraft";
 }
 
 body {
     height: 100vh;
     width: 100%;
+    color: #fff;
 }
 
 .display-none {
@@ -26,7 +28,7 @@ body {
 
 /* Landing Page styling */
 #landing-page {
-    background: url(../imgs/dirt-block.png);
+    background: url(../imgs/bg1.png) center center / cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -80,6 +82,7 @@ body {
 
 .logo {
     height: 20%;
+    width: 70%;
 }
 
 .start-btn {
@@ -144,16 +147,12 @@ body {
     width: 10vmin;
     background: url("../imgs/inventory-slot.png") center center / cover no-repeat;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 1.5rem;
+    padding: 0.1rem 0.4rem;
     color: #fff;
     font-family: "Minecraft";
-}
-
-.inventory .slot img {
-    height: 70%;
-    width: 70%;
 }
 
 .inventory .slot.selected {
@@ -162,54 +161,67 @@ body {
     width: 10vmin;
 }
 
-.inventory .slot1::before {
-    content: "";
-    background: url("../imgs/pickaxe.png") center center / cover no-repeat;
-    height: 70%;
-    width: 70%;
+.inventory .slot1 {
+    background: url("../imgs/inventory-slot-pickaxe.png") center center / cover no-repeat;
 }
 
-.inventory .slot2::before {
-    content: "";
-    background: url("../imgs/axe.png") center center / cover no-repeat;
-    height: 70%;
-    width: 70%;
+.inventory .pickaxe.selected {
+    background: url("../imgs/inventory-select-pickaxe.png") center center / cover no-repeat;
 }
 
-.inventory .slot3::before {
-    content: "";
-    background: url("../imgs/shovel.png") center center / cover no-repeat;
-    height: 70%;
-    width: 70%;
+.inventory .slot2 {
+    background: url("../imgs/inventory-slot-axe.png") center center / cover no-repeat;
 }
 
-.inventory .slot5::before {
-    content: "";
-    background: url("../imgs/dirt-inventory.png") center center / cover no-repeat;
-    position: relative;
-    height: 60%;
-    width: 60%;
+.inventory .axe.selected {
+    background: url("../imgs/inventory-select-axe.png") center center / cover no-repeat;
 }
 
-.inventory .slot6::before {
-    content: "";
-    background: url("../imgs/cobblestone-inventory.png") center center / cover no-repeat;
-    position: relative;
-    height: 60%;
-    width: 60%;
+.inventory .slot3 {
+    background: url("../imgs/inventory-slot-shovel.png") center center / cover no-repeat;
 }
 
-.inventory .slot7::before {
-    content: "";
-    background: url("../imgs/log-inventory.png") center center / cover no-repeat;
-    position: relative;
-    height: 60%;
-    width: 60%;
+.inventory .shovel.selected {
+    background: url("../imgs/inventory-select-shovel.png") center center / cover no-repeat;
 }
-.inventory .slot8::before {
-    content: "";
-    background: url("../imgs/leaves-inventory.png") center center / cover no-repeat;
-    position: relative;
-    height: 60%;
-    width: 60%;
+
+.inventory .slot4 {
+    background: url("../imgs/inventory-slot-shears.png") center center / cover no-repeat;
 }
+
+.inventory .shears.selected {
+    background: url("../imgs/inventory-select-shears.png") center center / cover no-repeat;
+}
+
+.inventory .slot5 {
+    background: url("../imgs/inventory-slot-dirt.png") center center / cover no-repeat;
+}
+
+.inventory .dirt.selected {
+    background: url("../imgs/inventory-select-dirt.png") center center / cover no-repeat;
+}
+
+.inventory .slot6 {
+    background: url("../imgs/inventory-slot-cobblestone.png") center center / cover no-repeat;
+}
+
+.inventory .cobblestone.selected {
+    background: url("../imgs/inventory-select-cobblestone.png") center center / cover no-repeat;
+}
+
+.inventory .slot7 {
+    background: url("../imgs/inventory-slot-log.png") center center / cover no-repeat;
+}
+
+.inventory .log.selected {
+    background: url("../imgs/inventory-select-log.png") center center / cover no-repeat;
+}
+
+.inventory .slot8 {
+    background: url("../imgs/inventory-slot-leaves.png") center center / cover no-repeat;
+}
+
+.inventory .leaves.selected {
+    background: url("../imgs/inventory-select-leaves.png") center center / cover no-repeat;
+}
+

@@ -28,13 +28,21 @@ startBtn.addEventListener("click", () => {
 // the PlayScreen area -----------------------------------------
 const blocksObj = {
     0: "stone",
+    stone: 0,
     1: "dirt",
+    dirt: 1,
     2: "grass",
+    grass: 2,
     3: "log",
+    log: 3,
     4: "leaves",
+    leaves: 4,
     5: "cloud",
+    cloud: 5,
     6: "none",
+    none: 6,
     7: "cobblestone",
+    cobblestone: 7,
 };
 
 const mineable = {
@@ -113,10 +121,18 @@ function draw() {
 }
 
 function useSlot(e) {
-    // if (isSlotSelected()){
-
-    // }
-    isMineable(e)
+    if (isSlotSelected()){
+        switch (selectedItem) {
+            case "pickaxe":
+            case "axe":
+            case "shovel":
+                isMineable(e);
+                break;
+            default:
+                isPlaceable(e.target);
+                break;
+        }
+    }
 }
 
 function isMineable(e) {
@@ -144,6 +160,33 @@ function isAccessible(tile) {
     }
 }
 
+function isSlotSelected() {
+    if (selectedItem == "none") {
+        return false;
+    }
+    return true;
+}
+
+function isPlaceable(tile) {
+    if (items[selectedItem] > 0) {
+        const x = parseInt(tile.getAttribute("x"));
+        const y = parseInt(tile.getAttribute("y"));
+        let tileType = tile.classList.value;
+        if (
+            (blocksMatrix[y][x + 1] != 6 ||
+            blocksMatrix[y][x - 1] != 6 ||
+            blocksMatrix[y - 1][x] != 6 ||
+            blocksMatrix[y + 1][x] != 6) &&
+            tileType === "none"
+        ) {
+            decrease(selectedItem);
+            blocksMatrix[y][x] = blocksObj[selectedItem];
+            tile.classList.remove(tileType);
+            tile.classList.add(selectedItem);
+        }
+    } 
+}
+
 // the Inventory area ------------------------------------------
 
 let selectedItem = "none";
@@ -155,22 +198,10 @@ const tools = {
 };
 
 const items = {
-    dirt: {
-        selected: false,
-        count: 0,
-    },
-    cobblestone: {
-        selected: false,
-        count: 0,
-    },
-    log: {
-        selected: false,
-        count: 0,
-    },
-    leaves: {
-        selected: false,
-        count: 0,
-    },
+    dirt: 0,
+    cobblestone: 0,
+    log: 0,
+    leaves:0,
 }
 
 inventoryArr.forEach((slot, i) => {
@@ -200,20 +231,21 @@ function add(block) {
     switch (block) {
         case "grass":
         case "dirt":
-            dirtEl.textContent = `${items.dirt.count + 1}`;
-            items.dirt.count++;
+            dirtEl.textContent = `${items.dirt + 1}`;
+            items.dirt++;
             break;
         case "stone":
-            cobblestoneEl.textContent = `${items.cobblestone.count + 1}`;
-            items.cobblestone.count++;
+        case "cobblestone":
+            cobblestoneEl.textContent = `${items.cobblestone + 1}`;
+            items.cobblestone++;
             break;
         case "log":
-            logEl.textContent = `${items.log.count + 1}`;
-            items.log.count++;
+            logEl.textContent = `${items.log + 1}`;
+            items.log++;
             break;
         case "leaves":
-            leavesEl.textContent = `${items.leaves.count + 1}`;
-            items.leaves.count++;
+            leavesEl.textContent = `${items.leaves + 1}`;
+            items.leaves++;
             break;
     }
 }
@@ -221,16 +253,21 @@ function add(block) {
 function decrease(block) {
     switch (block) {
         case "dirt":
-            items.dirt.count--;
+            dirtEl.textContent = `${items.dirt - 1}`;
+            items.dirt--;
             break;
         case "stone":
-            items.cobblestone.count--;
+        case "cobblestone":
+            cobblestoneEl.textContent = `${items.cobblestone - 1}`;
+            items.cobblestone--;
             break;
         case "log":
-            items.log.count--;
+            logEl.textContent = `${items.log - 1}`;
+            items.log--;
             break;
         case "leaves":
-            items.leaves.count--;
+            leavesEl.textContent = `${items.leaves - 1}`;
+            items.leaves--;
             break;
     }
 }

@@ -125,6 +125,10 @@ body {
     background: url(../imgs/stone-block.png) center center / cover no-repeat;
 }
 
+.cobblestone {
+    background: url(../imgs/cobblestone-block.png) center center / cover no-repeat;
+}
+
 .leaves {
     background: url(../imgs/leaves-block.png) center center / cover no-repeat;
 }

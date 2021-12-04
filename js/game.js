@@ -22,7 +22,7 @@ startBtn.addEventListener("click", () => {
     landingPage.classList.toggle("display-none");
     playScreen.classList.toggle("display-none");
     inventoryScreen.classList.toggle("display-none");
-    draw();
+    draw(blocksMatrix);
 });
 
 // the PlayScreen area -----------------------------------------
@@ -53,38 +53,38 @@ const mineable = {
     ],
   };
 
-const blocksMatrix = [];
+let blocksMatrix = [];
 
 // const blockDimensions = screenWidth.value / 30;
 
-function readyScreen() {
+function readyScreen(matrix) {
     playScreen.style.width = screenWidth.value + "px";
     // ready an appropirate matrix
     for (let i = 0; i < 20; i++) {
-        blocksMatrix.push([]);
+        matrix.push([]);
         for (let j = 0; j < 30; j++) {
-            blocksMatrix[i].push(6);
+            matrix[i].push(6);
         }
     }
 
     // fill in the stone layers
     for (let i = 19; i > 16; i--) {
-        for (let j = 0; j <  blocksMatrix[i].length; j++) {
-            blocksMatrix[i][j] = 0;
+        for (let j = 0; j <  matrix[i].length; j++) {
+            matrix[i][j] = 0;
         }
     }
 
     // fill in the dirt
     for (let i = 16; i > 14; i--) {
-        for (let j = 0; j <  blocksMatrix[i].length; j++) {
-            blocksMatrix[i][j] = 1;
+        for (let j = 0; j <  matrix[i].length; j++) {
+            matrix[i][j] = 1;
         }
     }
 
     // fill in the grass
     for (let i = 14; i > 13; i--) {
-        for (let j = 0; j <  blocksMatrix[i].length; j++) {
-            blocksMatrix[i][j] = 2;
+        for (let j = 0; j <  matrix[i].length; j++) {
+            matrix[i][j] = 2;
         }
     }
     
@@ -92,24 +92,24 @@ function readyScreen() {
     for (let i = 13; i > 11; i--) {
         for (let j = 2; j < 3; j++) {
             
-            blocksMatrix[i][j] = 3;
+            matrix[i][j] = 3;
         }
     }
 
     // add leaves
     for (let i = 11; i > 9; i--) {
         for (let j = 1; j < 4; j++) {
-            blocksMatrix[i][j] = 4;
+            matrix[i][j] = 4;
         }
     }
 }
 
-function draw() {
-    readyScreen();
-    for (let i = 0; i < blocksMatrix.length; i++) {
-        for (let j = 0; j < blocksMatrix[i].length; j++) {
+function draw(matrix) {
+    readyScreen(matrix);
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
             const block = document.createElement("div");
-            block.classList.add(blocksObj[blocksMatrix[i][j]]);
+            block.classList.add(blocksObj[matrix[i][j]]);
             block.addEventListener("click", useSlot, false);
             block.setAttribute("x", j);
             block.setAttribute("y", i);
@@ -233,21 +233,21 @@ function add(block) {
     switch (block) {
         case "grass":
         case "dirt":
-            dirtEl.textContent = `${items.dirt + 1}`;
             items.dirt++;
+            dirtEl.textContent = items.dirt;
             break;
         case "stone":
         case "cobblestone":
-            cobblestoneEl.textContent = `${items.cobblestone + 1}`;
             items.cobblestone++;
+            cobblestoneEl.textContent = items.cobblestone;
             break;
         case "log":
-            logEl.textContent = `${items.log + 1}`;
             items.log++;
+            logEl.textContent = items.log;
             break;
         case "leaves":
-            leavesEl.textContent = `${items.leaves + 1}`;
             items.leaves++;
+            leavesEl.textContent = items.leaves;
             break;
     }
 }
@@ -255,21 +255,54 @@ function add(block) {
 function decrease(block) {
     switch (block) {
         case "dirt":
-            dirtEl.textContent = `${items.dirt - 1}`;
             items.dirt--;
+            if (items.dirt === 0) {
+                dirtEl.textContent = ""
+            } else {
+                dirtEl.textContent = items.dirt;
+            }
             break;
         case "stone":
         case "cobblestone":
-            cobblestoneEl.textContent = `${items.cobblestone - 1}`;
             items.cobblestone--;
+            if (items.cobblestone === 0) {
+                cobblestoneEl.textContent = "";
+            } else {
+                cobblestoneEl.textContent = items.cobblestone;
+            }
             break;
         case "log":
-            logEl.textContent = `${items.log - 1}`;
             items.log--;
+            if (items.log === 0) {
+                logEl.textContent = "";
+            } else {
+                logEl.textContent = items.log;
+            }
             break;
         case "leaves":
-            leavesEl.textContent = `${items.leaves - 1}`;
             items.leaves--;
+            if (items.leaves === 0) {
+                leavesEl.textContent = "";
+            } else {
+                leavesEl.textContent = items.leaves;
+            }
             break;
     }
 }
+
+// the Reset area ------------------------------------------
+const resetBtn = document.querySelector(".reset-btn");
+
+resetBtn.addEventListener("click", () => {
+    blocksMatrix = [];
+    playScreen.innerHTML = "";
+    dirtEl.textContent = "";
+    cobblestoneEl.textContent = "";
+    logEl.textContent = "";
+    leavesEl.textContent = "";
+    items.dirt = 0;
+    items.cobblestone = 0;
+    items.log = 0;
+    items.leaves = 0;
+    draw(blocksMatrix);
+});
